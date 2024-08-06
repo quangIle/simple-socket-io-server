@@ -8,17 +8,18 @@ To use this Socket.io server, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/quangIle/simple-socket-io-server.git`
 2. Navigate to the project directory: `cd simple-socket-io-server`
-3. Install the dependencies: `npm install`
+3. Install the dependencies: `yarn install`
 
 ## Usage
 
 To start the Socket.io server, run the following command:
 
 ```sh
-npm start
+yarn build
+yarn start
 ```
 
-By default, the server will run on port 3000. You can change the port by modifying the `PORT` variable in the `.env` file.
+By default, the server will run on port 3000. You can change the port by modifying the `PORT` variable in the `.env` file (see [.env.example](.env.example)).
 
 ## Features
 

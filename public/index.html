@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Socket.io Server</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+  <h1>Socket.io Server</h1>
+  <form id="socket-form">
+    <label>Send to server</label>
+    <input id="message" type="text" />
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const socket = io('http://localhost:3000');
+
+      socket.on('connect', () => {
+        console.log('connected to server');
+      });
+
+      socket.on('disconnect', () => {
+        console.log('disconnected from server');
+      });
+
+      socket.on('notification', (msg) => {
+        console.log('notification', msg);
+      });
+
+      const form = document.getElementById('socket-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = document.getElementById('message').value || Math.floor(Math.random() * 10000);
+        socket.emit('message', `${new Date().toISOString()} -- ${message}`);
+      });
+    });
+  </script>
+</body>
+
+</html>
