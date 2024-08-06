@@ -1,5 +1,4 @@
 import express from "express"
-import getPort, { portNumbers } from "get-port"
 import http from "node:http"
 import { Server } from "socket.io"
 
@@ -11,10 +10,7 @@ const io = new Server(server, {
   },
 })
 
-const desiredPort = Number(process.env.PORT || 3000)
-const portToUse = await getPort({
-  port: portNumbers(desiredPort, desiredPort + 100),
-})
+const PORT = Number(process.env.PORT || 3000)
 
 app.use(express.static("public"))
 
@@ -31,6 +27,6 @@ io.on("connection", (socket) => {
   })
 })
 
-server.listen(portToUse, () => {
-  console.log(`Listening on *:${portToUse}`)
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`)
 })
